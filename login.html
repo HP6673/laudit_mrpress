@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LogistiQ — Sign In</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/auth.css" />
+</head>
+<body class="auth-body">
+
+  <a href="../index.html" class="auth-back">← LogistiQ</a>
+
+  <div class="auth-container">
+
+    <!-- Logo -->
+    <div class="auth-logo">LogistiQ</div>
+    <p class="auth-tagline">Access your project portal</p>
+
+    <!-- Role tabs -->
+    <div class="role-tabs" id="roleTabs">
+      <button class="role-tab active" data-role="client" onclick="switchRole('client')">Client</button>
+      <button class="role-tab" data-role="admin" onclick="switchRole('admin')">Admin</button>
+    </div>
+
+    <!-- ─── CLIENT PANEL ─── -->
+    <div class="auth-panel" id="clientPanel">
+      <!-- Toggle: sign in / create account -->
+      <div class="sub-tabs">
+        <button class="sub-tab active" onclick="switchSub('signin')">Sign In</button>
+        <button class="sub-tab" onclick="switchSub('register')">Create Account</button>
+      </div>
+
+      <!-- Client Sign In -->
+      <div id="clientSignin">
+        <div class="field-group">
+          <label>Email</label>
+          <input type="email" id="clientEmail" placeholder="you@company.com" />
+        </div>
+        <div class="field-group">
+          <label>Password</label>
+          <input type="password" id="clientPassword" placeholder="••••••••" />
+        </div>
+        <div id="clientSigninError" class="auth-error hidden"></div>
+        <button class="auth-btn" onclick="clientSignIn()">Sign In →</button>
+      </div>
+
+      <!-- Client Register -->
+      <div id="clientRegister" class="hidden">
+        <div class="field-group">
+          <label>Full Name</label>
+          <input type="text" id="regName" placeholder="Jane Smith" />
+        </div>
+        <div class="field-group">
+          <label>Email</label>
+          <input type="email" id="regEmail" placeholder="you@company.com" />
+        </div>
+        <div class="field-group">
+          <label>Password</label>
+          <input type="password" id="regPassword" placeholder="Min 8 characters" />
+        </div>
+        <div class="field-group">
+          <label>Confirm Password</label>
+          <input type="password" id="regConfirm" placeholder="••••••••" />
+        </div>
+        <div id="regError" class="auth-error hidden"></div>
+        <button class="auth-btn" onclick="clientRegister()">Create Account →</button>
+        <p class="auth-note">Your account must be invited to a project by an admin before you can access files.</p>
+      </div>
+    </div>
+
+    <!-- ─── ADMIN PANEL ─── -->
+    <div class="auth-panel hidden" id="adminPanel">
+      <div class="admin-hint">
+        <div class="admin-icon">🔐</div>
+        <p>Enter the admin password to access the full project dashboard.</p>
+      </div>
+      <div class="field-group">
+        <label>Admin Password</label>
+        <input type="password" id="adminPassword" placeholder="••••••••" onkeydown="if(event.key==='Enter') adminSignIn()" />
+      </div>
+      <div id="adminError" class="auth-error hidden"></div>
+      <button class="auth-btn" onclick="adminSignIn()">Enter Dashboard →</button>
+    </div>
+
+  </div><!-- /auth-container -->
+
+  <script src="../js/auth.js"></script>
+</body>
+</html>

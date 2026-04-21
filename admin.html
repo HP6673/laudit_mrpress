@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LogistiQ — Admin Dashboard</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/portal.css" />
+</head>
+<body class="portal-body">
+
+  <!-- ─── Top bar ─── -->
+  <header class="portal-header">
+    <a href="../index.html" class="nav-logo">LogistiQ</a>
+    <div class="portal-header-right">
+      <span class="portal-role-badge">Admin</span>
+      <button class="logout-btn" onclick="logout()">Sign Out</button>
+    </div>
+  </header>
+
+  <div class="portal-layout">
+
+    <!-- ─── Sidebar ─── -->
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <button class="sidebar-link active" onclick="showTab('projects')">📁 Projects</button>
+        <button class="sidebar-link" onclick="showTab('clients')">👥 Clients</button>
+        <button class="sidebar-link" onclick="showTab('questionnaire')">📋 Questionnaire</button>
+      </nav>
+    </aside>
+
+    <!-- ─── Main content ─── -->
+    <main class="portal-main">
+
+      <!-- ══ PROJECTS TAB ══ -->
+      <div class="tab-panel" id="tab-projects">
+        <div class="panel-header">
+          <h1 class="panel-title">All Projects</h1>
+          <button class="primary-btn" onclick="openNewProjectModal()">+ New Project</button>
+        </div>
+
+        <div class="project-grid" id="projectGrid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- ══ CLIENTS TAB ══ -->
+      <div class="tab-panel hidden" id="tab-clients">
+        <div class="panel-header">
+          <h1 class="panel-title">Registered Clients</h1>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table" id="clientsTable">
+            <thead>
+              <tr><th>Name</th><th>Email</th><th>Joined</th><th>Projects</th></tr>
+            </thead>
+            <tbody id="clientsBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ══ QUESTIONNAIRE TAB ══ -->
+      <div class="tab-panel hidden" id="tab-questionnaire">
+        <div class="panel-header">
+          <h1 class="panel-title">Client Questionnaire Responses</h1>
+        </div>
+        <div id="questionnaireList"></div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ══ NEW PROJECT MODAL ══ -->
+  <div class="modal-overlay hidden" id="newProjectModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Create New Project</h2>
+        <button class="modal-close" onclick="closeModal('newProjectModal')">✕</button>
+      </div>
+
+      <div class="field-group">
+        <label>Project Name</label>
+        <input type="text" id="projName" placeholder="e.g. Acme Corp Logistics Audit" />
+      </div>
+      <div class="field-group">
+        <label>Client Company</label>
+        <input type="text" id="projCompany" placeholder="Company name" />
+      </div>
+      <div class="field-group">
+        <label>Description</label>
+        <textarea id="projDesc" rows="3" placeholder="Scope, goals, notes..."></textarea>
+      </div>
+
+      <!-- Invite clients by email -->
+      <div class="field-group">
+        <label>Invite Clients (search by email)</label>
+        <input type="text" id="inviteSearch" placeholder="Type to search emails…" oninput="searchClients(this.value)" />
+        <div class="email-dropdown hidden" id="emailDropdown"></div>
+      </div>
+      <div class="invited-chips" id="invitedChips"></div>
+
+      <div class="modal-actions">
+        <button class="secondary-btn" onclick="closeModal('newProjectModal')">Cancel</button>
+        <button class="primary-btn" onclick="createProject()">Create Project →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PROJECT DETAIL MODAL ══ -->
+  <div class="modal-overlay hidden" id="projectDetailModal">
+    <div class="modal modal-wide">
+      <div class="modal-header">
+        <h2 id="detailProjectName">Project Name</h2>
+        <button class="modal-close" onclick="closeModal('projectDetailModal')">✕</button>
+      </div>
+      <p id="detailProjectCompany" class="detail-sub"></p>
+      <p id="detailProjectDesc" class="detail-desc"></p>
+
+      <div class="detail-section">
+        <h3>Invited Clients</h3>
+        <div id="detailClients" class="chip-list"></div>
+      </div>
+
+      <div class="detail-section">
+        <h3>Project Files</h3>
+        <div class="upload-zone" id="adminUploadZone">
+          <input type="file" id="adminFileInput" multiple hidden />
+          <p>Drag files here or <button class="link-btn" onclick="document.getElementById('adminFileInput').click()">browse</button></p>
+        </div>
+        <div class="file-list" id="adminFileList"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/storage.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

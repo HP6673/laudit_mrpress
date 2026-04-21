@@ -1,0 +1,191 @@
+/* ═══════════════════════════════════════
+   AUTH.CSS — Login / Register pages
+═══════════════════════════════════════ */
+.auth-body {
+  min-height: 100vh;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+}
+
+/* subtle grid background */
+.auth-body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(245,166,35,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,166,35,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+.auth-back {
+  position: fixed;
+  top: 1.5rem;
+  left: 2rem;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.2s;
+  z-index: 10;
+}
+.auth-back:hover { color: var(--amber); }
+
+.auth-container {
+  width: 100%;
+  max-width: 440px;
+  background: var(--dark);
+  border: 1px solid rgba(245,166,35,0.15);
+  border-radius: 6px;
+  padding: 2.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.auth-logo {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  letter-spacing: 0.08em;
+  color: var(--amber);
+  text-align: center;
+  margin-bottom: 0.25rem;
+}
+.auth-tagline {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-bottom: 1.75rem;
+}
+
+/* Role tabs */
+.role-tabs {
+  display: flex;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 1.75rem;
+}
+.role-tab {
+  flex: 1;
+  padding: 0.65rem;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.role-tab.active {
+  background: var(--amber);
+  color: var(--black);
+  font-weight: 600;
+}
+
+/* Sub-tabs (sign in / register) */
+.sub-tabs {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding-bottom: 0.75rem;
+}
+.sub-tab {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+.sub-tab.active {
+  color: var(--amber);
+  border-bottom-color: var(--amber);
+}
+
+/* Fields */
+.field-group {
+  margin-bottom: 1.1rem;
+}
+.field-group label {
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+.field-group input,
+.field-group select,
+.field-group textarea {
+  width: 100%;
+  background: var(--mid);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 3px;
+  padding: 0.7rem 0.85rem;
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+  resize: vertical;
+}
+.field-group input:focus,
+.field-group select:focus,
+.field-group textarea:focus {
+  border-color: var(--amber);
+}
+.field-group select option { background: var(--mid); }
+
+/* Auth button */
+.auth-btn {
+  width: 100%;
+  padding: 0.85rem;
+  background: var(--amber);
+  color: var(--black);
+  border: none;
+  border-radius: 3px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background 0.2s;
+}
+.auth-btn:hover { background: var(--amber2); }
+
+/* Errors */
+.auth-error {
+  background: rgba(220, 60, 60, 0.12);
+  border: 1px solid rgba(220, 60, 60, 0.4);
+  color: #ff7070;
+  font-size: 0.85rem;
+  padding: 0.6rem 0.85rem;
+  border-radius: 3px;
+  margin-bottom: 0.75rem;
+}
+
+/* Admin hint */
+.admin-hint {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.admin-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+.admin-hint p { font-size: 0.9rem; color: var(--muted); }
+
+.auth-note {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.hidden { display: none !important; }

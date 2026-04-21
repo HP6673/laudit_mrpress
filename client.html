@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LogistiQ — Client Portal</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/portal.css" />
+</head>
+<body class="portal-body">
+
+  <!-- ─── Top bar ─── -->
+  <header class="portal-header">
+    <a href="../index.html" class="nav-logo">LogistiQ</a>
+    <div class="portal-header-right">
+      <span class="portal-user-name" id="clientGreeting">Welcome</span>
+      <span class="portal-role-badge client">Client</span>
+      <button class="logout-btn" onclick="logout()">Sign Out</button>
+    </div>
+  </header>
+
+  <div class="portal-layout">
+
+    <!-- ─── Sidebar ─── -->
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <button class="sidebar-link active" onclick="showTab('projects')">📁 My Projects</button>
+        <button class="sidebar-link" onclick="showTab('questionnaire')">📋 Questionnaire</button>
+      </nav>
+    </aside>
+
+    <!-- ─── Main content ─── -->
+    <main class="portal-main">
+
+      <!-- ══ PROJECTS TAB ══ -->
+      <div class="tab-panel" id="tab-projects">
+        <div class="panel-header">
+          <h1 class="panel-title">My Projects</h1>
+        </div>
+
+        <div id="noProjects" class="empty-state hidden">
+          <div class="empty-icon">📭</div>
+          <p>You haven't been added to any projects yet.</p>
+          <p class="muted">Your admin will invite you once a project is created for your company.</p>
+        </div>
+
+        <div class="project-grid" id="projectGrid"></div>
+      </div>
+
+      <!-- ══ QUESTIONNAIRE TAB ══ -->
+      <div class="tab-panel hidden" id="tab-questionnaire">
+        <div class="panel-header">
+          <h1 class="panel-title">Logistics Questionnaire</h1>
+          <p class="panel-sub">Fill this out so we can prepare your audit. Your answers are saved automatically.</p>
+        </div>
+        <form class="questionnaire-form" id="questionnaireForm" onsubmit="return false">
+
+          <fieldset>
+            <legend>📦 Shipment Volume</legend>
+            <div class="field-group">
+              <label>How many shipments do you process per week?</label>
+              <input type="number" name="shipmentsPerWeek" placeholder="e.g. 250" />
+            </div>
+            <div class="field-group">
+              <label>What types of goods do you ship? (size, weight, fragility)</label>
+              <textarea name="goodsType" rows="2" placeholder="e.g. Industrial pallets, avg 400 lbs, not fragile"></textarea>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>📍 Locations & Network</legend>
+            <div class="field-group">
+              <label>How many warehouses / distribution centers do you operate?</label>
+              <input type="number" name="warehouseCount" placeholder="e.g. 3" />
+            </div>
+            <div class="field-group">
+              <label>How many delivery locations / stores / job sites do you serve?</label>
+              <input type="number" name="deliveryLocations" placeholder="e.g. 42" />
+            </div>
+            <div class="field-group">
+              <label>Which states or regions do you operate in?</label>
+              <input type="text" name="regions" placeholder="e.g. Midwest, Southeast" />
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>🚛 Carriers & Fleet</legend>
+            <div class="field-group">
+              <label>Which carriers / couriers do you currently use?</label>
+              <textarea name="carriers" rows="2" placeholder="e.g. FedEx Freight, UPS, regional LTL carrier"></textarea>
+            </div>
+            <div class="field-group">
+              <label>Do you operate your own fleet? If yes, how many vehicles?</label>
+              <input type="text" name="ownFleet" placeholder="e.g. Yes — 12 trucks" />
+            </div>
+            <div class="field-group">
+              <label>Do you have rate agreements / contracts with carriers?</label>
+              <select name="hasContracts">
+                <option value="">Select…</option>
+                <option>Yes, with most carriers</option>
+                <option>Yes, with some carriers</option>
+                <option>No contracts — spot rates only</option>
+                <option>Unsure</option>
+              </select>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>💻 Technology & Process</legend>
+            <div class="field-group">
+              <label>Do you use a TMS (Transportation Management System)?</label>
+              <select name="hasTMS">
+                <option value="">Select…</option>
+                <option>Yes — please describe below</option>
+                <option>No — we manage manually</option>
+                <option>Partial — spreadsheets/email</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label>If yes, which system?</label>
+              <input type="text" name="tmsName" placeholder="e.g. McLeod, MercuryGate, custom ERP" />
+            </div>
+            <div class="field-group">
+              <label>How do you currently track shipments in real time?</label>
+              <textarea name="trackingMethod" rows="2" placeholder="e.g. Carrier portals, phone calls, GPS on own trucks"></textarea>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>💰 Spend & Pain Points</legend>
+            <div class="field-group">
+              <label>What is your estimated annual logistics / freight spend?</label>
+              <select name="annualSpend">
+                <option value="">Select range…</option>
+                <option>Under $250K</option>
+                <option>$250K – $1M</option>
+                <option>$1M – $5M</option>
+                <option>$5M – $20M</option>
+                <option>Over $20M</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label>What is your biggest logistics complaint right now?</label>
+              <textarea name="biggestPain" rows="3" placeholder="Late deliveries? Carrier cost? Damaged goods? Manual processes?"></textarea>
+            </div>
+            <div class="field-group">
+              <label>Have you done a logistics audit before?</label>
+              <select name="priorAudit">
+                <option value="">Select…</option>
+                <option>No — this is our first</option>
+                <option>Yes — internally</option>
+                <option>Yes — with a consultant</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label>Anything else we should know before the audit?</label>
+              <textarea name="additionalNotes" rows="3" placeholder="Seasonal patterns, recent changes, special requirements…"></textarea>
+            </div>
+          </fieldset>
+
+          <button type="button" class="primary-btn" onclick="saveQuestionnaire()">Save Responses →</button>
+          <span class="save-status" id="saveStatus"></span>
+        </form>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ══ PROJECT FILE MODAL ══ -->
+  <div class="modal-overlay hidden" id="projectDetailModal">
+    <div class="modal modal-wide">
+      <div class="modal-header">
+        <h2 id="detailProjectName">Project</h2>
+        <button class="modal-close" onclick="closeModal('projectDetailModal')">✕</button>
+      </div>
+      <p id="detailProjectCompany" class="detail-sub"></p>
+      <p id="detailProjectDesc" class="detail-desc"></p>
+
+      <div class="detail-section">
+        <h3>Upload Files</h3>
+        <div class="upload-zone" id="clientUploadZone">
+          <input type="file" id="clientFileInput" multiple hidden />
+          <p>Drag files here or <button class="link-btn" onclick="document.getElementById('clientFileInput').click()">browse</button></p>
+          <p class="muted small">Invoices, contracts, route logs, any relevant documents</p>
+        </div>
+        <div class="file-list" id="clientFileList"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/storage.js"></script>
+  <script src="../js/client.js"></script>
+</body>
+</html>

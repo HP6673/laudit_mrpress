@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LogistiQ — Reinvent Your Operation</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+  <!-- ─── NAV ─────────────────────────────────────────── -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo">LogistiQ</a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="pages/login.html" class="nav-cta">Portal →</a>
+    </div>
+  </nav>
+
+  <!-- ─── HERO SCROLL CONTAINER ────────────────────────── -->
+  <div class="scroll-wrapper" id="scrollWrapper">
+
+    <!-- Canvas for Three.js truck -->
+    <canvas id="truckCanvas"></canvas>
+
+    <!-- Slogan pinned at top, parallax out -->
+    <div class="hero-slogan" id="heroSlogan">
+      <span class="slogan-line">Reinvent</span>
+      <span class="slogan-line accent">Your Operation</span>
+      <p class="slogan-sub">Precision logistics audits that surface what's costing you money.</p>
+      <a href="pages/login.html" class="hero-btn">Get Started →</a>
+    </div>
+
+    <!-- Road overlay label that fades in mid-scroll -->
+    <div class="road-label" id="roadLabel">Every mile. Every dollar.</div>
+
+  </div><!-- /scroll-wrapper -->
+
+  <!-- ─── SERVICES SECTION ──────────────────────────────── -->
+  <section class="services" id="services">
+    <div class="services-inner">
+      <h2 class="section-title">What We Audit</h2>
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">📦</div>
+          <h3>Freight Spend</h3>
+          <p>Uncover overpayments, billing errors, and rate mismatches across every carrier lane.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🗺️</div>
+          <h3>Route Efficiency</h3>
+          <p>Eliminate empty miles, consolidate runs, and build optimized delivery networks.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📊</div>
+          <h3>Carrier Performance</h3>
+          <p>Score on-time rates, damage history, and claims to know who's actually delivering.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">⚙️</div>
+          <h3>Process & Tech</h3>
+          <p>Identify manual bottlenecks and gaps that automation can close in weeks, not months.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ──────────────────────────────────────────── -->
+  <section class="about" id="about">
+    <div class="about-inner">
+      <div class="about-text">
+        <h2>Data-driven.<br/>Dollar-quantified.<br/>Done right.</h2>
+        <p>We turn your shipping invoices, route logs, and carrier contracts into a clear picture of waste — and a prioritized roadmap to eliminate it.</p>
+        <a href="pages/login.html" class="outline-btn">Access Client Portal</a>
+      </div>
+      <div class="about-stats">
+        <div class="stat"><span class="stat-num">23%</span><span class="stat-label">Avg freight savings found</span></div>
+        <div class="stat"><span class="stat-num">4.2×</span><span class="stat-label">ROI on first engagement</span></div>
+        <div class="stat"><span class="stat-num">6 wks</span><span class="stat-label">Typical audit turnaround</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="footer-logo">LogistiQ</span>
+      <span class="footer-copy">© 2025 LogistiQ. All rights reserved.</span>
+      <a href="pages/login.html" class="footer-link">Client Portal</a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/truck.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
